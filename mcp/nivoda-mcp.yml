@@ -1,0 +1,32 @@
+generated: '2026-07-20'
+method: derived
+status: candidate
+source: >-
+  Derived from documented Nivoda GraphQL operations at
+  https://bitbucket.org/nivoda/nivoda-api/src/main/. No official hosted MCP
+  server was found.
+server:
+  name: nivoda
+  transport: http
+  url: null
+  note: >-
+    Candidate tool set mapped from the public GraphQL operations. Nivoda does not
+    (as of this pass) publish an official MCP server; these tools would wrap the
+    GraphQL endpoint at https://integrations.nivoda.net/api/diamonds and require a
+    bearer token from the authenticate login mutation.
+tools:
+- name: authenticate
+  description: Exchange a Nivoda platform username/password for a bearer token.
+  source_operation: 'graphql#authenticate.username_and_password'
+- name: search_diamonds
+  description: Search live diamond inventory with filters (shape, size, color, media flags), paginated (limit max 50) and ordered.
+  source_operation: 'graphql#diamonds_by_query'
+- name: create_request
+  description: Create a diamond request/concierge request by certificate number (optionally auto-creating an order).
+  source_operation: 'graphql#create_request'
+- name: create_order
+  description: Place an order for one or more diamonds by offer id (DIAMOND/<uuid>).
+  source_operation: 'graphql#create_order'
+- name: create_hold
+  description: Place a hold on a diamond by product id and product type; returns hold id, denied flag and expiry.
+  source_operation: 'graphql#create_hold'

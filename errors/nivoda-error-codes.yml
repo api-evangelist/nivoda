@@ -1,0 +1,33 @@
+generated: '2026-07-20'
+method: derived
+source: >-
+  Derived from the Nivoda GraphQL API contract at
+  https://bitbucket.org/nivoda/nivoda-api/src/main/. Nivoda does not publish a
+  numbered error-code registry; GraphQL returns errors in a top-level errors[]
+  array. Entries below describe the documented failure modes, not a published code list.
+format: graphql-errors
+envelope:
+  shape: '{ data: {...}|null, errors: [ { message, path, extensions } ] }'
+  note: >-
+    GraphQL responses always return HTTP 200 for well-formed requests; failures
+    surface in the errors[] array with a human-readable message. Check errors[]
+    before reading data.
+error_conditions:
+- condition: authentication_failed
+  cause: Invalid username/password in the authenticate mutation, or a missing/expired bearer token.
+  remediation: Re-run authenticate.username_and_password and send Authorization Bearer token.
+- condition: not_authorized_for_pro
+  cause: Calling create_order / create_hold / create_request without Nivoda API Pro access.
+  remediation: Request Pro activation from your Nivoda account manager.
+- condition: invalid_query_arguments
+  cause: 'limit above 50, unknown shape value, or malformed query filter object.'
+  remediation: Cap limit at 50; use accepted shape values (examples/accepted_shapes.txt); validate filter shape.
+- condition: unknown_offer_or_product
+  cause: offerId / ProductId does not resolve to an available diamond (sold, held, or wrong id form).
+  remediation: Re-run diamonds_by_query to get a current offer id in DIAMOND/<uuid> form.
+- condition: hold_denied
+  cause: create_hold could not place the hold (stone unavailable or already held).
+  note: Returned as denied=true on the hold object rather than an errors[] entry.
+- condition: not_returnable
+  cause: return_option=true set on a non-returnable stone.
+  note: Silently coerced to false rather than raising an error.

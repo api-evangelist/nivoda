@@ -1,0 +1,74 @@
+generated: '2026-07-20'
+method: derived
+source: >-
+  Derived from Nivoda GraphQL example operations at
+  https://bitbucket.org/nivoda/nivoda-api/src/main/ (examples/search,
+  examples/orders, examples/holds).
+notes: >-
+  GraphQL API (no OpenAPI). Entities and fields below are taken directly from the
+  documented example queries/mutations; field lists are the documented subset,
+  not the full schema (browsable in the GraphiQL explorer).
+entities:
+- name: DiamondSearchResultItem
+  from: 'diamonds_by_query { items { ... } }'
+  fields: [id, price, discount]
+  relationships:
+  - {type: has_one, entity: Diamond, via: diamond}
+- name: Diamond
+  identifier: 'offer id form DIAMOND/<uuid>'
+  fields:
+  - id
+  - video
+  - image
+  - availability
+  - supplierStockId
+  - brown
+  - green
+  - milky
+  - eyeClean
+  - mine_of_origin
+  relationships:
+  - {type: has_one, entity: Certificate, via: certificate}
+- name: Certificate
+  fields:
+  - id
+  - lab
+  - shape
+  - certNumber
+  - cut
+  - carats
+  - clarity
+  - polish
+  - symmetry
+  - color
+  - width
+  - length
+  - depth
+  - girdle
+  - floInt
+  - floCol
+  - depthPercentage
+  - table
+- name: Order
+  from: create_order
+  identifier: 'order id (returned by create_order)'
+  fields: [offerId, customer_order_number, customer_comment, return_option, destinationId]
+  relationships:
+  - {type: has_many, entity: Diamond, via: 'items[].offerId'}
+- name: Hold
+  from: create_hold
+  fields: [id, denied, until]
+  inputs: [ProductId, ProductType]
+  relationships:
+  - {type: belongs_to, entity: Diamond, via: ProductId}
+- name: Request
+  from: create_request
+  identifier: 'request id (returned by create_request)'
+  fields: [certificate_number, lab, comment, customer_order_number, create_order, requested_info]
+enums:
+  ProductType: [Diamond]
+  order_type: [price]
+  order_direction: [ASC, DESC]
+  requested_info: [MEDIA]
+  shapes_sample: [ROUND, OVAL, EMERALD, PEAR, CUSHION, PRINCESS, RADIANT, MARQUISE, HEART, ASSCHER]
+  shapes_note: 'Full accepted-shapes list (~50 values) in examples/accepted_shapes.txt'

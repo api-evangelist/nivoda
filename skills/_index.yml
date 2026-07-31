@@ -1,0 +1,20 @@
+generated: '2026-07-20'
+method: generated
+source: >-
+  Grounded in verified Nivoda GraphQL operations at
+  https://bitbucket.org/nivoda/nivoda-api/src/main/ (examples/search,
+  examples/orders, examples/holds).
+api: graphql https://integrations.nivoda.net/api/diamonds
+skills:
+- file: nivoda-search-diamonds.md
+  name: Authenticate and search Nivoda diamond inventory
+  api: https://integrations.nivoda.net/api/diamonds
+  operations: [authenticate.username_and_password, diamonds_by_query]
+- file: nivoda-order-diamond.md
+  name: Order or hold a diamond on Nivoda
+  api: https://integrations.nivoda.net/api/diamonds
+  operations: [authenticate.username_and_password, diamonds_by_query, create_hold, create_order]
+- file: nivoda-create-request.md
+  name: Create a Nivoda diamond request by certificate number
+  api: https://integrations.nivoda.net/api/diamonds
+  operations: [authenticate.username_and_password, create_request]

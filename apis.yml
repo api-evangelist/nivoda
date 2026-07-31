@@ -1,8 +1,30 @@
 aid: nivoda
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/nivoda.png
 name: Nivoda
-description: Nivoda is a company surfaced as a portfolio company of canaan-partners, northzone and added
-  to the API Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment
-  pipeline.
+description: >-
+  Nivoda is a global B2B marketplace for the diamond, gemstone and jewelry
+  trade, connecting jewelry retailers directly with suppliers of natural and
+  lab-grown diamonds, colored gemstones, melee and made-to-order finished
+  jewelry without the retailer having to hold stock. The platform provides
+  real-time pricing, high-resolution imagery and video, advanced search and
+  quality control, consolidated shipping and invoicing, flexible credit terms
+  and risk-free returns. Nivoda exposes a public GraphQL API that verified
+  customers use to integrate live supplier inventory into their own websites and
+  storefronts, mirroring the same search capabilities as the Nivoda platform and
+  mobile apps, with Pro access adding orders, holds, diamond requests and
+  concierge requests.
 url: https://raw.githubusercontent.com/api-evangelist/nivoda/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -11,17 +33,105 @@ x-backed-by:
 - northzone
 x-tier: stub
 x-tier-reason: portfolio-lead
+x-enrichment:
+  date: '2026-07-20'
+  status: enriched
+  artifacts_added: 15
+  pass: local-v1
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-20'
 tags:
 - Company
-apis: []
+- Diamonds
+- Gemstones
+- Jewelry
+- Marketplace
+- B2B
+- GraphQL
+- Inventory
+- E-commerce
+apis:
+- name: Nivoda Diamonds GraphQL API (Production)
+  description: >-
+    Public GraphQL API for verified Nivoda customers to search live natural and
+    lab-grown diamond, gemstone and jewelry inventory, retrieve real-time
+    pricing, certificates and media, and (with Pro access) place orders, holds,
+    diamond requests and concierge requests. Returns only the fields requested.
+  humanURL: https://bitbucket.org/nivoda/nivoda-api/src/main/
+  baseURL: https://integrations.nivoda.net/api/diamonds
+  properties:
+  - type: GraphQL
+    url: https://integrations.nivoda.net/api/diamonds
+  - type: APIReference
+    url: https://integrations.nivoda.net/api/diamonds-graphiql
+  - type: Documentation
+    url: https://bitbucket.org/nivoda/nivoda-api/src/main/
+  - type: Authentication
+    url: authentication/nivoda-authentication.yml
+- name: Nivoda Diamonds GraphQL API (Staging)
+  description: >-
+    Staging / sandbox GraphQL endpoint mirroring production, with a GraphiQL
+    explorer for browsing queries and mutations and testing code. Staging
+    username and password are shared on request by a Nivoda account manager.
+  humanURL: https://bitbucket.org/nivoda/nivoda-api/src/main/
+  baseURL: https://intg-customer-staging.nivodaapi.net/api/diamonds
+  properties:
+  - type: GraphQL
+    url: https://intg-customer-staging.nivodaapi.net/api/diamonds
+  - type: APIReference
+    url: https://intg-customer-staging.nivodaapi.net/api/diamonds-graphiql
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: DomainSecurity
+  url: security/nivoda-domain-security.yml
 - type: Website
   url: https://nivoda.com
+- type: DeveloperPortal
+  url: https://bitbucket.org/nivoda/nivoda-api/src/main/
+- type: Documentation
+  url: https://bitbucket.org/nivoda/nivoda-api/src/main/
+- type: APIReference
+  url: https://integrations.nivoda.net/api/diamonds-graphiql
+- type: GettingStarted
+  url: https://bitbucket.org/nivoda/nivoda-api/src/main/
+- type: GitHubOrganization
+  url: https://github.com/Nivoda
+- type: Support
+  url: https://buyerhelp.nivoda.com/
+- type: Blog
+  url: https://nivoda.com/category/blog
+- type: SignUp
+  url: https://app.nivoda.net/
+- type: Login
+  url: https://app.nivoda.net/
+- type: TermsOfService
+  url: https://nivoda.com/terms-conditions
+- type: PrivacyPolicy
+  url: https://nivoda.com/privacy-policy
+- type: Authentication
+  url: authentication/nivoda-authentication.yml
+- type: Conventions
+  url: conventions/nivoda-conventions.yml
+- type: DataModel
+  url: data-model/nivoda-data-model.yml
+- type: Sandbox
+  url: sandbox/nivoda-sandbox.yml
+- type: Lifecycle
+  url: lifecycle/nivoda-lifecycle.yml
+- type: Conformance
+  url: conformance/nivoda-conformance.yml
+- type: ErrorCatalog
+  url: errors/nivoda-error-codes.yml
+- type: WellKnown
+  url: well-known/nivoda-well-known.yml
+- type: MCPServer
+  url: mcp/nivoda-mcp.yml
+- type: LLMsTxt
+  url: llms/nivoda-llms.txt
+- type: AgentSkill
+  url: skills/_index.yml

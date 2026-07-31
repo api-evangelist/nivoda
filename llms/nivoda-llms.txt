@@ -1,0 +1,37 @@
+# Nivoda
+
+> Nivoda is a global B2B marketplace for the diamond, gemstone and jewelry trade, connecting retailers directly with suppliers of natural and lab-grown diamonds, colored gemstones, melee and made-to-order finished jewelry without holding stock. Its public GraphQL API lets verified customers integrate live supplier inventory, real-time pricing, certificates and media into their own storefronts, with Pro access adding orders, holds, diamond requests and concierge requests.
+
+## APIs
+- [Nivoda Diamonds GraphQL API (Production)](https://integrations.nivoda.net/api/diamonds): POST JSON GraphQL endpoint for search, orders, holds and requests.
+- [GraphiQL explorer (Production)](https://integrations.nivoda.net/api/diamonds-graphiql): Browse queries/mutations and test code (browse creds nivoda-api-docs / nivoda-graphiql).
+- [Staging endpoint](https://intg-customer-staging.nivodaapi.net/api/diamonds): Sandbox mirror; credentials on request.
+
+## Docs
+- [API documentation (BitBucket)](https://bitbucket.org/nivoda/nivoda-api/src/main/): README plus Node.js, PHP and generic GraphQL examples.
+- [Archived docs (GitHub)](https://github.com/Nivoda/nivoda-api): Prior home of the API docs (archived 2024-06-05).
+- [Buyer help center](https://buyerhelp.nivoda.com/): Support and how-to articles.
+
+## Operations
+- authenticate: `authenticate { username_and_password(username, password) { token } }` returns a bearer token.
+- diamonds_by_query: Search inventory with filters (shape, size, color, media flags), offset/limit (max 50), order.
+- create_request: Create a request by certificate number, optionally auto-creating an order.
+- create_order: Order one or more diamonds by offer id (DIAMOND/<uuid>).
+- create_hold: Hold a diamond by product id and product type.
+
+## Artifacts
+- [Authentication](authentication/nivoda-authentication.yml)
+- [Conventions](conventions/nivoda-conventions.yml)
+- [Data model](data-model/nivoda-data-model.yml)
+- [Sandbox](sandbox/nivoda-sandbox.yml)
+- [Lifecycle](lifecycle/nivoda-lifecycle.yml)
+- [Conformance](conformance/nivoda-conformance.yml)
+- [Errors](errors/nivoda-error-codes.yml)
+- [MCP (candidate)](mcp/nivoda-mcp.yml)
+- [Agent skills](skills/_index.yml)
+
+## Company
+- [Website](https://nivoda.com)
+- [Sign up / Login](https://app.nivoda.net/)
+- [Terms of Service](https://nivoda.com/terms-conditions)
+- [Privacy Policy](https://nivoda.com/privacy-policy)

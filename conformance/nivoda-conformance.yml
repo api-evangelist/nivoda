@@ -1,0 +1,29 @@
+generated: '2026-07-20'
+method: derived
+source: >-
+  Derived from Nivoda GraphQL API docs + examples
+  (https://bitbucket.org/nivoda/nivoda-api/src/main/) and live domain probes.
+standards:
+- id: graphql
+  conforms: true
+  evidence: GraphQL query/mutation API served over POST JSON at /api/diamonds.
+- id: bearer-token-auth
+  conforms: true
+  evidence: Authorization Bearer token obtained from the authenticate login mutation.
+- id: oauth2
+  conforms: false
+  evidence: No OAuth2 authorization server; custom username/password login mutation.
+- id: oidc
+  conforms: false
+  evidence: No /.well-known/openid-configuration (404).
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: Errors use the standard GraphQL top-level errors[] array, not problem+json.
+- id: rest
+  conforms: false
+  evidence: Single GraphQL endpoint, not resource-oriented REST.
+compliance_program:
+  published: false
+  note: >-
+    No public trust center or named certifications (SOC 2 / ISO 27001 / PCI / etc.)
+    were found via live probes. No Compliance pointer emitted.

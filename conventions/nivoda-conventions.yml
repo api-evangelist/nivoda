@@ -1,0 +1,63 @@
+generated: '2026-07-20'
+method: searched
+source: https://bitbucket.org/nivoda/nivoda-api/src/main/
+api_style: graphql
+transport:
+  protocol: https
+  method: POST
+  content_type: application/json
+  endpoints:
+    production: https://integrations.nivoda.net/api/diamonds
+    staging: https://intg-customer-staging.nivodaapi.net/api/diamonds
+  graphiql:
+    production: https://integrations.nivoda.net/api/diamonds-graphiql
+    staging: https://intg-customer-staging.nivodaapi.net/api/diamonds-graphiql
+authentication:
+  style: bearer-token-from-login-mutation
+  flow: >-
+    Run `authenticate { username_and_password(username, password) { token } }`,
+    then send the returned token as `Authorization: Bearer <token>` on all
+    subsequent requests. See authentication/nivoda-authentication.yml.
+field_selection:
+  supported: true
+  note: >-
+    Standard GraphQL — the API returns only the fields requested. Available
+    fields are browsable in the GraphiQL explorer.
+pagination:
+  style: offset-limit
+  params:
+    offset: integer (default 0)
+    limit: integer (maximum 50)
+  response_fields:
+    items: array of result rows
+    total_count: total number of matching records
+  ordering:
+    param: order
+    shape: '{ type: price, direction: ASC|DESC }'
+  source: examples/search/graphql-search.gql
+idempotency:
+  supported: false
+  note: >-
+    No idempotency-key mechanism is documented for create_order / create_hold /
+    create_request. Callers de-duplicate via their own customer_order_number
+    reference, which is echoed on the dashboard and invoice but is not enforced
+    as an idempotency key.
+media:
+  note: >-
+    Image and video URLs returned by the API are resizable by changing the
+    default 500/500 dimensions embedded in the URL to the desired width/height.
+identifiers:
+  offer_id: 'ProductType/ProductId, e.g. DIAMOND/8bc1e15f-7086-489e-a79f-7e76a6063329'
+  product_type_enum: [Diamond]
+error_envelope:
+  style: graphql-errors
+  note: >-
+    Errors are returned in the standard GraphQL top-level `errors[]` array
+    alongside partial `data`; there is no RFC 9457 problem+json envelope.
+rate_limits:
+  documented: false
+  note: Search `limit` is capped at 50 rows per query; no published request-rate limit.
+cross_links:
+  authentication: authentication/nivoda-authentication.yml
+  data_model: data-model/nivoda-data-model.yml
+  lifecycle: lifecycle/nivoda-lifecycle.yml

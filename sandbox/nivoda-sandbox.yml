@@ -1,0 +1,30 @@
+generated: '2026-07-20'
+method: searched
+source: https://bitbucket.org/nivoda/nivoda-api/src/main/
+environments:
+- name: staging
+  endpoint: https://intg-customer-staging.nivodaapi.net/api/diamonds
+  graphiql: https://intg-customer-staging.nivodaapi.net/api/diamonds-graphiql
+  credentials: shared on request by a Nivoda account manager
+  purpose: >-
+    Full sandbox mirror of production for browsing queries/mutations in the
+    GraphiQL explorer and testing integration code before go-live.
+- name: production
+  endpoint: https://integrations.nivoda.net/api/diamonds
+  graphiql: https://integrations.nivoda.net/api/diamonds-graphiql
+  graphiql_browse_credentials:
+    username: nivoda-api-docs
+    password: nivoda-graphiql
+    note: Public browse-only credentials for the GraphiQL explorer UI (documented in README).
+  activation: >-
+    Production login is activated by a Nivoda account manager once you are ready
+    to move from staging; requires a signed Nivoda Feed Agreement.
+test_values:
+  note: >-
+    Nivoda does not publish synthetic test cards or magic identifiers. Sandbox
+    testing uses the real staging inventory with staging credentials. No test
+    values are invented here.
+promotion:
+  staging_to_production: >-
+    Same query/mutation surface; switch the endpoint host and use production
+    (platform) credentials once the account manager activates production access.
