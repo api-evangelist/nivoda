@@ -50,6 +50,16 @@ tags:
 - B2B
 - GraphQL
 - Inventory
+- E-Commerce
+tags_raw:
+- Company
+- Diamonds
+- Gemstones
+- Jewelry
+- Marketplace
+- B2B
+- GraphQL
+- Inventory
 - E-commerce
 apis:
 - name: Nivoda Diamonds GraphQL API (Production)
