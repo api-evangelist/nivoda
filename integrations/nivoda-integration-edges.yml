@@ -1,0 +1,16 @@
+generated: '2026-10-12'
+method: none
+source:
+- https://zapier.com/apps/nivoda/integrations
+- https://n8n.io/integrations/nivoda/
+- https://composio.dev/toolkits/nivoda
+- https://monid.ai/tools/nivoda
+checked:
+- https://composio.dev/toolkits/nivoda
+- https://monid.ai/tools/nivoda
+- https://n8n.io/integrations/nivoda/
+- https://zapier.com/apps/nivoda/integrations
+summary: null
+marketplace_apps: []
+edges: []
+templates: []
